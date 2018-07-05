@@ -38,6 +38,7 @@ export const Strings = {
     "PostalCode": "PostalCode",
     "Region": "Region",
     "ResetPrompt": "ResetPrompt",
+    "RequiredAddress": "RequiredAddress",
     "SelectFavoriteLocationPrompt" : "SelectFavoriteLocationPrompt",
     "SingleResultFound": "SingleResultFound",
     "StreetAddress": "StreetAddress",

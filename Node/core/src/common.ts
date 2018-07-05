@@ -6,9 +6,13 @@ import { RawLocation } from './rawLocation'
 export function createBaseDialog(options?: any): IntentDialog {
     return new IntentDialog(options)
         .matches(/^(cancel|cancelar)$/i, function (session: Session) {
+          if(session.dialogData.args.requiredAddress){
+            session.send(Strings.RequiredAddress)
+          } else {
             session.send(Strings.CancelPrompt)
             session.endDialogWithResult({ response: { cancel: true } });
             return
+          }
         })
         .matches(/^(help|ayuda)$/i, function (session: Session) {
             session.send(Strings.HelpMessage).sendBatch();

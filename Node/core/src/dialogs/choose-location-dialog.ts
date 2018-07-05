@@ -9,7 +9,7 @@ export function register(library: Library): void {
 
 function createDialog() {
     return common.createBaseDialog()
-        .matches(/^other$/i, function (session: Session) {
+        .matches(/^(other|otra)$/i, function (session: Session) {
             session.endDialogWithResult({response: {place: new Place()}});
         })
         .onBegin((session, args) => {
