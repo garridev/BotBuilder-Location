@@ -1,7 +1,7 @@
 import { Strings } from '../consts';
 import * as common from '../common';
 import { Session, IDialogResult, Library, AttachmentLayout, HeroCard, CardImage, Message } from 'botbuilder';
-import { RawLocation } from '../rawLocation';
+import { RawLocation, Address } from '../rawLocation';
 import { MapCard } from '../map-card';
 import * as locationService from '../services/bing-geospatial-service';
 import * as confirmDialog from './confirm-dialog';
@@ -77,7 +77,7 @@ function createLocationResolveDialog(apiKey: string) {
             }
 
             var searchString = session.message.text;
-            locationService.getLocationByQuery(apiKey, searchString).then(function (locations: Array<any>) {
+            locationService.getLocationByQuery(apiKey, searchString, session.dialogData.locationQueryOptions.countryCode).then(function (locations: Array<any>) {
                 if (locations.length == 0) {
                     session.send(Strings.LocationNotFound).sendBatch();
                     return;
