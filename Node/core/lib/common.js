@@ -6,13 +6,10 @@ var place_1 = require("./place");
 function createBaseDialog(options) {
     return new botbuilder_1.IntentDialog(options)
         .matches(/^(cancel|cancelar)$/i, function (session) {
-        if(session.dialogData.args.requiredAddress){
-          session.send(consts_1.Strings.RequiredAddress)
-        } else {
-          session.send(consts_1.Strings.CancelPrompt)
-          session.endDialogWithResult({ response: { cancel: true } });
-          return
-        }
+        session.send(consts_1.Strings.RequiredAddress)
+        // session.send(consts_1.Strings.CancelPrompt)
+        // session.endDialogWithResult({ response: { cancel: true } });
+        // return
     })
         .matches(/^(help|ayuda)$/i, function (session) {
         session.send(consts_1.Strings.HelpMessage).sendBatch();
