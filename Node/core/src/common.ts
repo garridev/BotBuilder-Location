@@ -5,12 +5,12 @@ import { RawLocation } from './rawLocation'
 
 export function createBaseDialog(options?: any): IntentDialog {
     return new IntentDialog(options)
-        .matches(/^cancel$/i, function (session: Session) {
+        .matches(/^(cancel|cancelar)$/i, function (session: Session) {
             session.send(Strings.CancelPrompt)
             session.endDialogWithResult({ response: { cancel: true } });
             return
         })
-        .matches(/^help$/i, function (session: Session) {
+        .matches(/^(help|ayuda)$/i, function (session: Session) {
             session.send(Strings.HelpMessage).sendBatch();
         })
         .matches(/^reset$/i, function (session: Session) {
