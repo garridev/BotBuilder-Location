@@ -45,10 +45,10 @@ function createDialog(apiKey) {
             else if (results.response && results.response.locations) {
                 var locations = results.response.locations;
                 if (locations.length == 1) {
-                    session.beginDialog('confirm-dialog', { locations: locations });
+                    session.beginDialog('confirm-single-location-dialog', { locations: locations });
                 }
                 else {
-                    session.beginDialog('choice-dialog', { locations: locations });
+                    session.beginDialog('choose-location-dialog', { locations: locations });
                 }
             }
             else {
