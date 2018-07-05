@@ -65,6 +65,9 @@ function createLocationResolveDialog(apiKey: string) {
     return common.createBaseDialog()
         .onBegin(function (session, args) {
             session.dialogData.args = args;
+            session.dialogData.locationQueryOptions = {
+              countryCode: args.countryCode || null
+            };
             var promptSuffix = session.gettext(Strings.TitleSuffixFacebook);
             sendLocationPrompt(session, session.dialogData.args.prompt + promptSuffix).sendBatch();
         }).onDefault((session) => {
