@@ -133,8 +133,8 @@ function createDialogStartHeroCard() {
             for (let i =0; i < possibleBranches.length; i++) {
                 var button = new CardAction(session);
                 button.type("imBack");
-                button.value(possibleBranches[i]);       
-                button.title(possibleBranches[i]);       
+                button.value(possibleBranches[i]);
+                button.title(possibleBranches[i]);
                 buttons.push(button);
             }
 
@@ -144,7 +144,7 @@ function createDialogStartHeroCard() {
 
             var attachments = new Array();
             attachments.push(card.toAttachment());
-          
+
             session.send( new Message(session).attachmentLayout(AttachmentLayout.carousel).attachments(attachments)).sendBatch();
         }).onDefault((session) => {
             const text: string = session.message.text;

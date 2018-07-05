@@ -7,15 +7,15 @@ import * as locationService from '../services/bing-geospatial-service';
 import * as confirmDialog from './confirm-dialog';
 
 export function register(library: Library, apiKey: string): void {
-    library.dialog('facebook-location-dialog', createDialog(apiKey));
-    library.dialog('facebook-location-resolve-dialog', createLocationResolveDialog(apiKey));
+    library.dialog('retrieve-facebook-location-dialog', createDialog(apiKey));
+    library.dialog('resolve-facebook-location-dialog', createLocationResolveDialog(apiKey));
 }
 
 function createDialog(apiKey: string) {
     return [
         (session: Session, args: any) => {
             session.dialogData.args = args;
-            session.beginDialog('facebook-location-resolve-dialog', { prompt: args.prompt });
+            session.beginDialog('resolve-facebook-location-dialog', { prompt: args.prompt });
         },
         (session: Session, results: IDialogResult<any>, next: (results?: IDialogResult<any>) => void) => {
             session.dialogData.response = results.response;

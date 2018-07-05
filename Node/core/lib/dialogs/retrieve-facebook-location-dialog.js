@@ -6,15 +6,15 @@ var botbuilder_1 = require("botbuilder");
 var map_card_1 = require("../map-card");
 var locationService = require("../services/bing-geospatial-service");
 function register(library, apiKey) {
-    library.dialog('facebook-location-dialog', createDialog(apiKey));
-    library.dialog('facebook-location-resolve-dialog', createLocationResolveDialog(apiKey));
+    library.dialog('retrieve-facebook-location-dialog', createDialog(apiKey));
+    library.dialog('resolve-facebook-location-dialog', createLocationResolveDialog(apiKey));
 }
 exports.register = register;
 function createDialog(apiKey) {
     return [
         function (session, args) {
             session.dialogData.args = args;
-            session.beginDialog('facebook-location-resolve-dialog', { prompt: args.prompt });
+            session.beginDialog('resolve-facebook-location-dialog', { prompt: args.prompt });
         },
         function (session, results, next) {
             session.dialogData.response = results.response;
