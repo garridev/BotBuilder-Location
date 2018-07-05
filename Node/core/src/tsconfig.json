@@ -6,6 +6,7 @@
         "noImplicitAny": true,
         "outDir": "../lib",
         "noEmitOnError": true,
-        "removeComments": true
+        "removeComments": true,
+        "skipLibCheck": true
     }
 }

@@ -27,6 +27,7 @@
     "@types/es6-shim": "^0.31.32",
     "@types/request": "0.0.33",
     "@types/request-promise": "^4.1.33",
-    "@types/sprintf-js": "0.0.27"
+    "@types/sprintf-js": "0.0.27",
+    "typescript": "^2.9.2"
   }
 }
