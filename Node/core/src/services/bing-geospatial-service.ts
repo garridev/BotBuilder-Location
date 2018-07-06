@@ -13,13 +13,13 @@ export function getLocationByQuery(apiKey: string, address: string, countryCode:
         address += ", " + countryCode;
     }
 
-    var url = addKeyToUrl(findLocationByQueryUrl, apiKey) + "&q=" + encodeURIComponent(address);
+    var url = addKeyToUrl(findLocationByQueryUrl, apiKey) + "&q=" + encodeURIComponent(address) + "&c=" + countryCode;
     return getLocation(url);
 }
 
-export function getLocationByPoint(apiKey: string, latitude: string, longitude: string): Promise<Array<RawLocation>> {
+export function getLocationByPoint(apiKey: string, latitude: string, longitude: string, culture: string): Promise<Array<RawLocation>> {
     var url: string = sprintf(findLocationByPointUrl, latitude, longitude);
-    url = addKeyToUrl(url, apiKey) + "&q=";
+    url = addKeyToUrl(url, apiKey) + "&q=" + "&c=" + culture;
     return getLocation(url);
 }
 
@@ -35,8 +35,8 @@ export function GetLocationMapImageUrl(apiKey: string, location: RawLocation, in
         }
         else {
             url = sprintf(findImageByPointUrl, point.coordinates[0], point.coordinates[1], sIndex)
-        }            
-        
+        }
+
         url = addKeyToUrl(url, apiKey);
 
         return url;

@@ -20,7 +20,7 @@ function createDialog(apiKey: string) {
         (session: Session, results: IDialogResult<any>, next: (results?: IDialogResult<any>) => void) => {
             session.dialogData.response = results.response;
             if (session.dialogData.args.reverseGeocode && results.response && results.response.place) {
-                locationService.getLocationByPoint(apiKey, results.response.place.point.coordinates[0], results.response.place.point.coordinates[1])
+                locationService.getLocationByPoint(apiKey, results.response.place.point.coordinates[0], results.response.place.point.coordinates[1], session.dialogData.args.countryCode)
                     .then(locations => {
                         let place: RawLocation;
                         if (locations.length && locations[0].address) {

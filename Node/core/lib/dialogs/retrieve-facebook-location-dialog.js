@@ -19,7 +19,7 @@ function createDialog(apiKey) {
         function (session, results, next) {
             session.dialogData.response = results.response;
             if (session.dialogData.args.reverseGeocode && results.response && results.response.place) {
-                locationService.getLocationByPoint(apiKey, results.response.place.point.coordinates[0], results.response.place.point.coordinates[1])
+                locationService.getLocationByPoint(apiKey, results.response.place.point.coordinates[0], results.response.place.point.coordinates[1], session.dialogData.args.countryCode)
                     .then(function (locations) {
                     var place;
                     if (locations.length && locations[0].address) {

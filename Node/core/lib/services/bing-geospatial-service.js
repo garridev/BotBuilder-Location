@@ -11,13 +11,13 @@ function getLocationByQuery(apiKey, address, countryCode) {
     if (countryCode !== null) {
         address += ", " + countryCode;
     }
-    var url = addKeyToUrl(findLocationByQueryUrl, apiKey) + "&q=" + encodeURIComponent(address);
+    var url = addKeyToUrl(findLocationByQueryUrl, apiKey) + "&q=" + encodeURIComponent(address) + "&c=" + countryCode;
     return getLocation(url);
 }
 exports.getLocationByQuery = getLocationByQuery;
-function getLocationByPoint(apiKey, latitude, longitude) {
+function getLocationByPoint(apiKey, latitude, longitude, culture) {
     var url = sprintf_js_1.sprintf(findLocationByPointUrl, latitude, longitude);
-    url = addKeyToUrl(url, apiKey) + "&q=";
+    url = addKeyToUrl(url, apiKey) + "&q=" + "&c=" + culture;
     return getLocation(url);
 }
 exports.getLocationByPoint = getLocationByPoint;
