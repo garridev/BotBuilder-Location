@@ -14,7 +14,7 @@ function createDialog(apiKey) {
     return [
         function (session, args) {
             session.dialogData.args = args;
-            session.beginDialog('resolve-facebook-location-dialog', { prompt: args.prompt });
+            session.beginDialog('resolve-facebook-location-dialog', args);
         },
         function (session, results, next) {
             session.dialogData.response = results.response;
@@ -24,8 +24,8 @@ function createDialog(apiKey) {
                     var place;
                     if (locations.length && locations[0].address) {
                         var address = {
-                            addressLine: undefined,
-                            formattedAddress: undefined,
+                            addressLine: locations[0].address.addressLine,
+                            formattedAddress: locations[0].address.formattedAddress,
                             adminDistrict: locations[0].address.adminDistrict,
                             adminDistrict2: locations[0].address.adminDistrict2,
                             countryRegion: locations[0].address.countryRegion,
@@ -66,7 +66,7 @@ function createLocationResolveDialog(apiKey) {
             countryCode: args.countryCode || null
         };
         var promptSuffix = session.gettext(consts_1.Strings.TitleSuffixFacebook);
-        sendLocationPrompt(session, session.dialogData.args.prompt + promptSuffix).sendBatch();
+        sendLocationPrompt(session, args.prompt + promptSuffix).sendBatch();
     }).onDefault(function (session) {
         var entities = session.message.entities;
         for (var i = 0; i < entities.length; i++) {

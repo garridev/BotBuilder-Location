@@ -24,11 +24,9 @@ function createDialog(apiKey: string) {
                     .then(locations => {
                         let place: RawLocation;
                         if (locations.length && locations[0].address) {
-                            // We don't trust reverse geo-coder on the street address level.
-                            // So, copy all fields except it.
                             let address: Address = {
-                                addressLine : undefined,
-                                formattedAddress: undefined,
+                                addressLine: locations[0].address.addressLine,
+                                formattedAddress: locations[0].address.formattedAddress,
                                 adminDistrict : locations[0].address.adminDistrict,
                                 adminDistrict2 : locations[0].address.adminDistrict2,
                                 countryRegion : locations[0].address.countryRegion,
